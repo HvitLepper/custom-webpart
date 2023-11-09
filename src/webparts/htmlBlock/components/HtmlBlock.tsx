@@ -16,10 +16,16 @@ export default (props: any) => {
     (async () => {
       let [groups, data] = await Promise.all([
         API.GetUserGroups(props.SPcontext),
-        API.GetListByTitle('Important Info')
+        API.GetListByTitle('Important Info', '', '*,AccessGroup/Title', 'AccessGroup')
       ]);
 
-      data = data.reverse().filter(item => !item.AccessGroup || groups.includes(item.AccessGroup)).map(item => ({
+      data = data.reverse().filter(item => {
+        if (!item.AccessGroup) return true;
+        
+        const AccessGroups = item.AccessGroup.map(group => group.Title);
+        const intersection = groups.filter(element => AccessGroups.includes(element));
+        return !AccessGroups.length || !!intersection.length
+      }).map(item => ({
         ...item,
         ShowTitle: window.location.href.includes('/es/') ? item.TitleSpanish : item.Title
       }));
