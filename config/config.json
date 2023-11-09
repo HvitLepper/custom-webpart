@@ -1,0 +1,27 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "custom-calendar-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/customCalendar/CustomCalendarWebPart.js",
+          "manifest": "./src/webparts/customCalendar/CustomCalendarWebPart.manifest.json"
+        }
+      ]
+    },
+    "html-block-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/htmlBlock/HtmlBlockWebPart.js",
+          "manifest": "./src/webparts/htmlBlock/HtmlBlockWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "CustomCalendarWebPartStrings": "lib/webparts/customCalendar/loc/{locale}.js",
+    "HtmlBlockWebPartStrings": "lib/webparts/htmlBlock/loc/{locale}.js"
+  }
+}

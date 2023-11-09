@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": false,
+    "version": "1.15.2",
+    "libraryName": "custom-webparts",
+    "libraryId": "51142c06-7a74-491e-9b3d-9c19691a440e",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "custom-webparts",
+    "solutionShortDescription": "custom-webparts description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
