@@ -54,7 +54,7 @@ export default (props: any) => {
             <div className='info'>
               <div className='title'>{item.ShowTitle}</div>
               {item.Link && item.Link.Url &&
-                <a target='_blank' href={item.Link.Url}><VscTriangleDown style={{ fontSize: '18px', marginBottom: '-4px' }} /> Acceso</a>
+                <a target='_blank' href={item.Link.Url}><VscTriangleDown style={{ fontSize: '18px', marginBottom: '-4px' }} /> {window.location.pathname.includes('/es/') ? 'Acceso' : 'Access'}</a>
               }
             </div>
           </div>
