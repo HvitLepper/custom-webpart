@@ -37,6 +37,7 @@ export default (props: any) => {
 
   return (
     <div className='custom-html-block_wrap'>
+      <div className='custom-html-block-header'>{props.description ? props.description : ''}</div>
       <Swiper
         slidesPerView={2}
         spaceBetween={20}

@@ -22,6 +22,7 @@ export default class HtmlBlockWebPart extends BaseClientSideWebPart<IHtmlBlockWe
     const element: React.ReactElement<any> = React.createElement(
       HtmlBlock,
       {
+        description: this.properties.description,
         SPcontext: this.context
       }
     );
@@ -80,7 +81,7 @@ export default class HtmlBlockWebPart extends BaseClientSideWebPart<IHtmlBlockWe
               groupName: strings.BasicGroupName,
               groupFields: [
                 PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                  label: `${window.location.pathname.includes('/es/') ? 'Título del Elemento Web' : 'Webpart Title'}`
                 })
               ]
             }

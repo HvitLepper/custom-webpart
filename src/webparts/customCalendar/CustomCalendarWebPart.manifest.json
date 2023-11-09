@@ -19,10 +19,10 @@
     "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Advanced
     "group": { "default": "Advanced" },
     "title": { "default": "CustomCalendar" },
-    "description": { "default": "CustomCalendar description" },
+    "description": { "default": "" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "description": "CustomCalendar"
+      "description": ""
     }
   }]
 }

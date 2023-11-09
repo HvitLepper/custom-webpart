@@ -94,7 +94,7 @@ export default (props: any) => {
 
   return (
     <>
-      <div className='calendar-header'>{window.location.pathname.includes('/es/') ? 'Calendario' : 'Calendar'}</div>
+      <div className='calendar-header'>{props.description ? props.description : window.location.pathname.includes('/es/') ? 'Calendario' : 'Calendar'}</div>
       <DatePicker
         selected={null}
         onChange={(date) => { }}

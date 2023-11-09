@@ -98,7 +98,7 @@ export default class CustomCalendarWebPart extends BaseClientSideWebPart<ICustom
               groupName: strings.BasicGroupName,
               groupFields: [
                 PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                  label: `${window.location.pathname.includes('/es/') ? 'Título del Elemento Web' : 'Webpart Title'}`
                 })
               ]
             }
