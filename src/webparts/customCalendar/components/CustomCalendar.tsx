@@ -4,6 +4,7 @@ import { TooltipHost, TooltipDelay } from "office-ui-fabric-react";
 import { BsCircleFill } from "react-icons/bs";
 import moment from 'moment';
 import * as API from '../../../api';
+import { PLANNER_IDs } from './Constants';
 import "react-datepicker/dist/react-datepicker.css";
 import './CustomCalendar.scss';
 
@@ -13,7 +14,13 @@ export default (props: any) => {
 
   useEffect(() => {
     (async () => {
-      const data = await API.GetListByTitle('Calendar');
+      let data = await API.GetListByTitle('Calendar');
+      console.log("data", data);
+
+      const plannerData = await API.GetPlannerTasks(PLANNER_IDs);
+      console.log("plannerData", plannerData);
+
+      data = data?.concat(plannerData);
 
       let date_arr = [] as any, _data = {} as any;
       data.forEach((item: any) => {
@@ -70,7 +77,7 @@ export default (props: any) => {
             <ul style={{ padding: 0, margin: 0 }}>
               {data[tooltipId] ? data[tooltipId].map(item =>
                 <li>
-                  <a style={{ color: '#fff' }} target='_blank' href={`${window.location.href}/Lists/Calendar/DispForm.aspx?ID=${item.Id}`}>{item.Title}</a>
+                  <a style={{ color: '#fff' }} target='_blank' href={item.Id ? `${window.location.href}/Lists/Calendar/DispForm.aspx?ID=${item.Id}` : item.Link}>{item.Title}</a>
                 </li>)
                 : null}
             </ul>

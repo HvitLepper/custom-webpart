@@ -12,6 +12,7 @@ import * as strings from 'CustomCalendarWebPartStrings';
 import CustomCalendar from './components/CustomCalendar';
 import { ICustomCalendarProps } from './components/ICustomCalendarProps';
 import { sp } from "@pnp/sp";
+import { setup as pnpSetup } from '@pnp/common';
 
 export interface ICustomCalendarWebPartProps {
   description: string;
@@ -41,6 +42,10 @@ export default class CustomCalendarWebPart extends BaseClientSideWebPart<ICustom
     this._environmentMessage = this._getEnvironmentMessage();
 
     return super.onInit().then(() => {
+      pnpSetup({
+        spfxContext: this.context
+      });
+      
       sp.setup({
         sp: {
           headers: {

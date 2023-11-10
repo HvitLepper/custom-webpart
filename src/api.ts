@@ -1,12 +1,38 @@
 import { sp } from "@pnp/sp/presets/all";
+import { graph } from "@pnp/graph";
 import "@pnp/sp/webs";
 import "@pnp/sp/lists";
 import "@pnp/sp/items";
+import "@pnp/graph/planner";
 
 export function GetListByTitle(listName: string, filter_req: string = '', select_req: string = '*', expand_req: string = '', orderBy_req: string = 'Id'): Promise<any> {
     return new Promise(async resolve => {
         return sp.web.lists.getByTitle(listName).items.filter(filter_req).expand(expand_req).select(select_req).orderBy(orderBy_req).getAll().then(async items => {
             items = fixResult(items);
+            items = await FixTimeZoneDisplay(items) as any;
+            resolve(items);
+        }, reason => {
+            console.error(reason);
+            resolve([]);
+        });
+    });
+}
+
+export function GetPlannerTasks(planIds: string[]): Promise<any> {
+    let items = [];
+    const batch = graph.createBatch();
+
+    return new Promise(async resolve => {
+        planIds.forEach(planId => graph.planner.plans.getById(planId).tasks.filter('dueDateTime ne null').top(5000).inBatch(batch)().then(_items => items = items.concat(_items)));
+        return batch.execute().then(async () => {
+            items = items.filter(item => item.appliedCategories?.category14).map(item => ({
+                Title: item.title,
+                EventDate: item.startDateTime ? item.startDateTime : item.dueDateTime,
+                EndDate: item.dueDateTime,
+                fAllDayEvent: !item.startDateTime,
+                Link: `https://tasks.office.com/${window.location.host.split('.')[0]}.com/Home/Task/${item.id}`
+            }));
+
             items = await FixTimeZoneDisplay(items) as any;
             resolve(items);
         }, reason => {
