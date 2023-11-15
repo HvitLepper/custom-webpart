@@ -3,7 +3,7 @@
   "solution": {
     "name": "custom-webparts-client-side-solution",
     "id": "51142c06-7a74-491e-9b3d-9c19691a440e",
-    "version": "1.0.0.12",
+    "version": "1.0.0.13",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
@@ -36,7 +36,7 @@
         "title": "custom-webparts Feature",
         "description": "The feature that activates elements of the custom-webparts solution.",
         "id": "2bc55e3b-659f-4573-b71b-3d6fd1520e74",
-        "version": "1.0.0.1"
+        "version": "1.0.0.2"
       }
     ]
   },

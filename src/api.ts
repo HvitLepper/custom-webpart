@@ -30,7 +30,7 @@ export function GetPlannerTasks(planIds: string[]): Promise<any> {
                 EventDate: item.startDateTime ? item.startDateTime : item.dueDateTime,
                 EndDate: item.dueDateTime,
                 fAllDayEvent: !item.startDateTime,
-                Link: `https://tasks.office.com/${window.location.host.split('.')[0]}.com/Home/Task/${item.id}`
+                Link: `https://tasks.office.com/${window.location.host.split('.')[0]}.onmicrosoft.com/Home/Task/${item.id}`
             }));
 
             items = await FixTimeZoneDisplay(items) as any;
